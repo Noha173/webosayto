@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدفع والسحب</title>
+</head>
+<body>
+    <h1>الدفع والسحب</h1>
+
+    <p>اختيارات الدفع:</p>
+    <p>بايبال: <a href="https://www.paypal.com/ncp/payment/M3KD8C93SZW2S" target="_blank">رابط بايبال للدفع</a></p>
+    <p>TRC20: <span>عنوان TRC20: TQkHHVUfQC6oZ6rZYxNuUL32EvCAyM8Rd2</span></p>
+
+    <h2>طلب سحب</h2>
+    <form id="withdraw-form">
+        <label for="withdraw-amount">المبلغ للسحب:</label>
+        <input type="number" id="withdraw-amount" required min="1">
+        <br><br>
+
+        <label for="payment-method">طريقة الدفع:</label>
+        <select id="payment-method">
+            <option value="paypal">بايبال</option>
+            <option value="trc20">TRC20</option>
+        </select>
+        <br><br>
+
+        <button type="submit">طلب سحب</button>
+    </form>
+
+    <script>
+        document.getElementById("withdraw-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // الحصول على المبلغ وطريقة الدفع
+            const withdrawAmount = parseFloat(document.getElementById("withdraw-amount").value);
+            const paymentMethod = document.getElementById("payment-method").value;
+            const clientBalance = parseFloat(localStorage.getItem("clientBalance"));
+
+            if (withdrawAmount > clientBalance) {
+                alert("رصيدك غير كافٍ.");
+                return;
+            }
+
+            // تحديث الرصيد بعد السحب
+            const newBalance = clientBalance - withdrawAmount;
+            localStorage.setItem("clientBalance", newBalance.toFixed(2));
+
+            // إرسال الطلب عبر البريد الإلكتروني (بسيط)
+            const emailBody = `تم طلب سحب مبلغ ${withdrawAmount} دولار عبر طريقة الدفع: ${paymentMethod}.`;
+            const mailtoLink = `mailto:dreaminvestment311@gmail.com?subject=طلب سحب&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+
+            alert("تم إرسال طلب السحب بنجاح.");
+        });
+    </script>
+</body>
+</html>
+<a href="account.html">العودة إلى الحساب</a>
+<a href="wheel.html">العودة إلى عجلة الحظ</a>
