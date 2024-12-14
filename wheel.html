@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عجلة الحظ</title>
+</head>
+<body>
+    <h1>عجلة الحظ</h1>
+    <div id="wheel"></div>
+    <button onclick="spinWheel()">قم بتدوير العجلة</button>
+    <p id="result"></p>
+
+    <script>
+        function spinWheel() {
+            const amount = parseFloat(prompt("أدخل المبلغ الذي ترغب في المراهنة عليه"));
+            if (isNaN(amount) || amount <= 0) {
+                alert("من فضلك أدخل مبلغ صحيح");
+                return;
+            }
+
+            const winAmount = (amount * 0.1).toFixed(2); // حساب ربح 10% من المبلغ المدخل
+
+            // تحديث الرصيد في localStorage
+            let currentBalance = parseFloat(localStorage.getItem("clientBalance")) || 0;
+            currentBalance += parseFloat(winAmount);
+            localStorage.setItem("clientBalance", currentBalance.toFixed(2));
+
+            // عرض النتيجة
+            document.getElementById("result").innerText = `لقد ربحت ${winAmount} دولار. رصيدك الحالي هو: ${currentBalance.toFixed(2)} دولار.`;
+        }
+    </script>
+</body>
+</html>
+<a href="account.html">العودة إلى الحساب</a>
+<a href="payment.html">الدفع والسحب</a>
