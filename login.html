@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+</head>
+<body>
+    <h1>تسجيل الدخول</h1>
+    <form id="login-form">
+        <label for="username">اسم المستخدم:</label>
+        <input type="text" id="username" required>
+        <br>
+        <button type="submit">دخول</button>
+    </form>
+
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // استلام اسم المستخدم
+            const username = document.getElementById("username").value;
+            const initialBalance = 100.00;  // قيمة رصيد افتراضية عند أول تسجيل دخول
+
+            // حفظ اسم المستخدم والرصيد في localStorage
+            localStorage.setItem("clientName", username);
+            localStorage.setItem("clientBalance", initialBalance.toFixed(2));
+
+            // توجيه المستخدم إلى صفحة الحساب
+            window.location.href = 'account.html';
+        });
+    </script>
+</body>
+</html>
+<a href="account.html">الانتقال إلى حسابي</a>
