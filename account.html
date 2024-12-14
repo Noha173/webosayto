@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب العميل</title>
+</head>
+<body>
+    <h1>مرحبًا، <span id="client-name"></span></h1>
+    <p>رصيدك الحالي: <span id="client-balance"></span> دولار</p>
+    <button onclick="window.location.href='wheel.html'">الانتقال إلى عجلة الحظ</button>
+    <button onclick="window.location.href='payment.html'">الدفع والسحب</button>
+
+    <script>
+        window.onload = function() {
+            // استرجاع اسم العميل والرصيد من localStorage
+            const clientName = localStorage.getItem("clientName") || "العميل";
+            const clientBalance = localStorage.getItem("clientBalance") || "0.00";
+
+            // عرض البيانات في الصفحة
+            document.getElementById("client-name").innerText = clientName;
+            document.getElementById("client-balance").innerText = clientBalance;
+        }
+    </script>
+</body>
+</html>
+<a href="wheel.html">الانتقال إلى عجلة الحظ</a>
+<a href="payment.html">الدفع والسحب</a>
