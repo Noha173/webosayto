@@ -4,25 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حساب العميل</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f3f4f6;
+            padding: 20px;
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .actions button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .actions button:hover {
+            background-color: #2980b9;
+        }
+    </style>
 </head>
 <body>
-    <h1>مرحبًا، <span id="client-name"></span></h1>
-    <p>رصيدك الحالي: <span id="client-balance"></span> دولار</p>
-    <button onclick="window.location.href='wheel.html'">الانتقال إلى عجلة الحظ</button>
-    <button onclick="window.location.href='payment.html'">الدفع والسحب</button>
-
+    <div class="container">
+        <h1>مرحبا، <span id="username">العميل</span></h1>
+        <p>رصيدك الحالي: <span id="balance">0</span> دولار</p>
+        <div class="actions">
+            <button onclick="window.location.href='wheel.html'">العب عجلة الحظ</button>
+            <button onclick="window.location.href='payment.html'">إدارة الأموال</button>
+        </div>
+    </div>
     <script>
-        window.onload = function() {
-            // استرجاع اسم العميل والرصيد من localStorage
-            const clientName = localStorage.getItem("clientName") || "العميل";
-            const clientBalance = localStorage.getItem("clientBalance") || "0.00";
-
-            // عرض البيانات في الصفحة
-            document.getElementById("client-name").innerText = clientName;
-            document.getElementById("client-balance").innerText = clientBalance;
-        }
+        // عرض اسم المستخدم ورصيده من التخزين المحلي
+        document.getElementById("username").innerText = localStorage.getItem("username") || "العميل";
+        document.getElementById("balance").innerText = localStorage.getItem("balance") || "0";
     </script>
 </body>
 </html>
-<a href="wheel.html">الانتقال إلى عجلة الحظ</a>
-<a href="payment.html">الدفع والسحب</a>
